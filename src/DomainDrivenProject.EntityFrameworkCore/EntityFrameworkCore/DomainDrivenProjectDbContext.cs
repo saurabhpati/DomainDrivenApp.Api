@@ -1,15 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Abp.Zero.EntityFrameworkCore;
+﻿using Abp.Zero.EntityFrameworkCore;
 using DomainDrivenProject.Authorization.Roles;
 using DomainDrivenProject.Authorization.Users;
+using DomainDrivenProject.Location;
 using DomainDrivenProject.MultiTenancy;
+using Microsoft.EntityFrameworkCore;
 
 namespace DomainDrivenProject.EntityFrameworkCore
 {
     public class DomainDrivenProjectDbContext : AbpZeroDbContext<Tenant, Role, User, DomainDrivenProjectDbContext>
     {
-        /* Define a DbSet for each entity of the application */
-        
+        public virtual DbSet<Country> Countries { get; set; }
+
+        public virtual DbSet<CountryTranslation> CountryTranslations { get; set; }
+
         public DomainDrivenProjectDbContext(DbContextOptions<DomainDrivenProjectDbContext> options)
             : base(options)
         {
